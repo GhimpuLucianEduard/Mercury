@@ -1,0 +1,22 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">@color/pureWhite</item>
+    </style>
+
+    <style name="ActiveTextBottomNavBar">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textColor">@color/accentPurple</item>
+    </style>
+
+    <style name="InactiveTextBottomNavBar">
+        <item name="android:fontFamily">@font/nunito_regular</item>
+        <item name="android:textColor">@color/primaryBlack</item>
+    </style>
+
+</resources>

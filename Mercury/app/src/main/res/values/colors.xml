@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Android Base -->
+    <color name="colorPrimary">#333333</color>
+    <color name="colorPrimaryDark">#333333</color>
+    <color name="colorAccent">#6250DA</color>
+
+    <!-- Main Colors -->
+    <color name="primaryBlack">#333333</color>
+    <color name="accentGreen">#75D6A1</color>
+    <color name="accentPurple">#6250DA</color>
+    <color name="pureWhite">#FFFFFF</color>
+
+    <!-- Connection Colors -->
+    <color name="connectionRed">#E25241</color>
+    <color name="connectionYellow">#FDF088</color>
+    <color name="connectionGreen">#7BB872</color>
+
+</resources>

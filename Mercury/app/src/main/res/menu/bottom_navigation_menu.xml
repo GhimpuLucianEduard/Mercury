@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/connectionFragment"
+        android:title="@string/connection"
+        android:icon="@drawable/wifi"/>
+    <item
+        android:id="@+id/logFragment"
+        android:title="@string/log"
+        android:icon="@drawable/history_clock"/>
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="@string/settings"
+        android:icon="@drawable/settings_gear"/>
+</menu>
