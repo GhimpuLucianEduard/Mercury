@@ -1,7 +1,8 @@
-package com.lucianghimpu.mercury
+package com.lucianghimpu.mercury.UI
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.lucianghimpu.mercury.R
 
 class MainActivity : AppCompatActivity() {
 

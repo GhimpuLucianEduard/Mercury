@@ -1,12 +1,15 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme"
+           parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:statusBarColor">@color/pureWhite</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBarOverlay">true</item>
+        <item name="android:statusBarColor">@color/accentPurple</item>
     </style>
 
     <style name="ActiveTextBottomNavBar">
@@ -17,6 +20,53 @@
     <style name="InactiveTextBottomNavBar">
         <item name="android:fontFamily">@font/nunito_regular</item>
         <item name="android:textColor">@color/primaryBlack</item>
+    </style>
+
+    <style name="ConnectionStatusImageView">
+        <item name="android:layout_width">16dp</item>
+        <item name="android:layout_height">16dp</item>
+        <item name="android:background">@drawable/connection_circle</item>
+    </style>
+
+    <style name="TitleLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textColor">@color/primaryBlack</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="MediumLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textColor">@color/primaryBlack</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SmallLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textColor">@color/primaryBlack</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    
+    
+    <style name="BaseEditText">
+        <item name="android:maxLines">1</item>
+        <item name="android:inputType">text</item>
+        <item name="android:textColor">@color/primaryBlack</item>
+        <item name="android:fontFamily">@font/nunito_regular</item>
+    </style>
+
+    <style name="BaseButton">
+        <item name="android:layout_width">196dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/rounded_button</item>
+        <item name="android:fontFamily">@font/nunito_semibold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/pureWhite</item>
     </style>
 
 </resources>

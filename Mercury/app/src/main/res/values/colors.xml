@@ -10,6 +10,7 @@
     <color name="primaryBlack">#333333</color>
     <color name="accentGreen">#75D6A1</color>
     <color name="accentPurple">#6250DA</color>
+    <color name="accentPurpleHalfOpacity">#806250DA</color>
     <color name="pureWhite">#FFFFFF</color>
 
     <!-- Connection Colors -->
