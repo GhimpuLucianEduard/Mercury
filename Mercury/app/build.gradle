@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.0"
@@ -26,6 +28,7 @@ android {
 dependencies {
 
     def nav_version = "2.1.0-rc01"
+    def scarlet_version = '0.2.1-alpha4'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -40,15 +43,33 @@ dependencies {
     // Material Design
     implementation 'com.google.android.material:material:1.1.0-alpha09'
 
-    // Dagger2
-    implementation 'com.google.dagger:dagger:2.24'
+    // Koin for Android Architecture ViewModel
+    implementation 'org.koin:koin-androidx-viewmodel:2.0.1'
+
+    // vm stuff
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.24'
 
     // tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    // Http log interceptor
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
+    // Scarlet
+    implementation "com.github.tinder.scarlet:scarlet:$scarlet_version"
+    implementation "com.github.tinder.scarlet:scarlet-protocol-websocket-okhttp:$scarlet_version"
+    implementation ("com.github.tinder.scarlet:scarlet-lifecycle-android:$scarlet_version") {
+        exclude group: 'com.github.tinder', module: 'scarlet'
+    }
+    implementation "com.github.tinder.scarlet:scarlet-message-adapter-gson:0.2.1-alpha3"
+    implementation "com.github.tinder.scarlet:scarlet-stream-adapter-coroutines:$scarlet_version"
+    implementation "com.github.tinder.scarlet:scarlet-message-adapter-moshi:$scarlet_version"
+    implementation "com.github.tinder.scarlet:scarlet-stream-adapter-rxjava2:$scarlet_version"
+
+    // RxKotlin
+    implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
 }
