@@ -4,7 +4,7 @@ const WebSocket = require('ws');
 const express = require('express')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-const { check, validationResult } = require('express-validator/check');
+require('log-timestamp');
 const app = express()
 
 app.use(morgan('dev'))
@@ -25,20 +25,14 @@ app.use((req, res, next) => {
 
 app.post('/mock', (req, res, next) => {
 
-    // const errors = validationResult(req)
-    // if (!errors.isEmpty()) {
-    //     return res.status(422).json({ errors: errors.array() })
-    // }
+    if (isSlaveConnected()) {
+        smsSlaveWs.send(JSON.stringify(req.body))
+        res.status(200).json({msg: 'SMS sent'})
+    } else {
+        res.status(500).json({error: "No SMS slave connected, please try again later"})
+    }
 
-    // if (smsSlave && smsSlave.readyState === WebSocket.OPEN) {
-    //     smsSlave.send(JSON.stringify(req.body))
-    //     console.log(`sms sent to ${req.body.number}, code: ${req.body.code} and text: ${req.body.text}` )
-    //     res.status(200).json({msg: 'sms sent'})
-    // } else {
-    //     res.status(500).json({error: "No SMS slave connected"})
-    // }
-
-    // return res
+    return res
 });
 
 app.use((req, res, next) => {
@@ -56,23 +50,34 @@ app.use((error, req, res, next) => {
 
 const server = http.createServer(app)
 const wsServer = new WebSocket.Server({server});
-var smsSlave = null
+var smsSlaveWs = null
 
 wsServer.on('connection', ws => {
-    console.log("Client connected")
+
+    console.log("Connected")
+    smsSlaveWs = ws
+
+    ws.on('message', message => {
+        console.log(`Received ${message} from slave`)
+    })
+    
+    ws.on('close', ws => {
+        console.log(`Slave disconnected`)
+    })
 })
 
-wsServer.on('open', () => {
-    console.log("On Open")
-})
+const isSlaveConnected = () => {
+    return wsServer.clients.size === 1 && smsSlaveWs;
+}
 
-// setInterval(() => {
-//     if (smsSlave) {
-//         console.log(`Sms with state: ${smsSlave.readyState}`)
-//     } else {
-//         console.log(`No SMS slave connected`)
-//     }
-// }, 60000)
+// for debug purposes mostly
+setInterval(() => {
+    if (isSlaveConnected()) {
+        console.log(`SMS slave connected`)
+    } else {
+        console.log(`No slave connected`)
+    }
+}, 3000)
 
 server.listen(port, function() {
     console.log('Listening on ' + port)
