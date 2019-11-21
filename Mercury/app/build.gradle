@@ -72,4 +72,8 @@ dependencies {
 
     // RxKotlin
     implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+
 }

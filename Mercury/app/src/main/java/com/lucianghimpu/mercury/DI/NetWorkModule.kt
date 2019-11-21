@@ -3,6 +3,8 @@ package com.lucianghimpu.mercury.DI
 import com.lucianghimpu.mercury.Data.Network.WebSocketService
 import com.lucianghimpu.mercury.Utilities.NetworkConstants
 import com.tinder.scarlet.Scarlet
+import com.tinder.scarlet.lifecycle.android.AndroidLifecycle
+import com.tinder.scarlet.messageadapter.moshi.MoshiMessageAdapter
 import com.tinder.scarlet.streamadapter.rxjava2.RxJava2StreamAdapterFactory
 import com.tinder.scarlet.websocket.ShutdownReason
 import com.tinder.scarlet.websocket.okhttp.OkHttpWebSocket
@@ -13,8 +15,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 
 val networkModule = module {
-    single<OkHttpClient>() { provideOkHttpClient() }
-    single<WebSocketService>() { provideWebSocketService(get()) }
+    single { provideOkHttpClient() }
+    single { provideWebSocketService(get()) }
 }
 
 fun provideOkHttpClient(): OkHttpClient {
@@ -49,9 +51,10 @@ fun provideWebSocketService(client: OkHttpClient) : WebSocketService {
     )
 
     val configuration = Scarlet.Configuration(
+        messageAdapterFactories = listOf(MoshiMessageAdapter.Factory()),
         streamAdapterFactories = listOf(RxJava2StreamAdapterFactory())
     )
 
     val scarletInstance = Scarlet(protocol, configuration)
-    return scarletInstance.create()
+    return scarletInstance.create<WebSocketService>()
 }

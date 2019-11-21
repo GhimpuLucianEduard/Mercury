@@ -1,4 +1,4 @@
-package com.lucianghimpu.mercury.UI
+package com.lucianghimpu.mercury.UI.Connection
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -8,14 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.lucianghimpu.mercury.R
+import kotlinx.android.synthetic.main.connection_fragment.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConnectionFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ConnectionFragment()
-    }
-
-    private lateinit var viewModel: ConnectionViewModel
+    private val viewModel by viewModel<ConnectionViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,10 +22,10 @@ class ConnectionFragment : Fragment() {
         return inflater.inflate(R.layout.connection_fragment, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(ConnectionViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        connectedServerLabel.text = viewModel.TAG
+
+    }
 }
